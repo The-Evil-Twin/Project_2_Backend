@@ -29,6 +29,16 @@ public class User {
 		recipes = new HashSet<Recipe>();
 	}
 
+	
+	
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+
+
 	public User(String username, String password, Set<Recipe> recipes) {
 		super();
 		this.username = username;
