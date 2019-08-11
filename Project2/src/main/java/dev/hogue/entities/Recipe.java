@@ -45,7 +45,7 @@ public class Recipe {
 	@JoinTable(
 			name="recipe_ingredient",
 			joinColumns = {@JoinColumn(name = "recipe", referencedColumnName="r_id")},
-			inverseJoinColumns = {@JoinColumn(name = "ingredient", referencedColumnName="title")}
+			inverseJoinColumns = {@JoinColumn(name = "ingredient", referencedColumnName="name")}
 			)
 	private Set<Ingredient> ingredients;
 	
