@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -74,6 +75,9 @@ public class DatabaseController {
 	@RequestMapping(value="/createRecipe", method = RequestMethod.POST, consumes={"application/json"})
 	public boolean addRecipe(@RequestBody Recipe recipe) {
 		System.out.println("GOOOOOOOOOOOOOOOOOOOOOOOTTT AAAAAAAAAAAA RESPPPPPPPPPPPPPPPONNNNNNNNNNSEEEEEEEE");
+		Gson gson = new Gson();
+		System.out.println(recipe);
+		System.out.println(gson.toJson(recipe));
 		rs.saveRecipe(recipe);
 		return true;
 	}

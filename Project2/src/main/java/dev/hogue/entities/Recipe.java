@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table; // Ask if we needed to import the Hibernate version of table
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -29,9 +30,11 @@ public class Recipe {
 	@Column(name="r_id")
 	private int id;
 	
+	@NotNull
 	@Column(name="title")
 	private String name;
 	
+	@NotNull
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
 	@Cascade({CascadeType.PERSIST})
 	private Set<Instruction> instructions;
