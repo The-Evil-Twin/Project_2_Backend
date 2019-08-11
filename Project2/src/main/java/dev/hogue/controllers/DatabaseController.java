@@ -98,7 +98,7 @@ public class DatabaseController {
 		for(Ingredient ingredient : ingred.getAllIngredient()) {
 			System.out.println(ingredient.getName());
 			for(Recipe recipe : ingredient.getUsedIn()) {
-				System.out.println(recipe.getName());
+				System.out.println(recipe.getTitle());
 			}
 		}
 		return ingred.getAllIngredient();
