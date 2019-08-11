@@ -26,7 +26,7 @@ public class Recipe {
 	private int id;
 	
 	@Column(name="title")
-	private String name;
+	private String title;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Instruction> instructions;
@@ -49,7 +49,7 @@ public class Recipe {
 	public Recipe(int id, String name, Set<Instruction> steps, Set<Ingredient> ingredients) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.title = name;
 		this.instructions = steps;
 		this.ingredients = ingredients;
 	}
@@ -61,10 +61,10 @@ public class Recipe {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return title;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.title = name;
 	}
 	public Set<Instruction> getInstructions() {
 		return instructions;
