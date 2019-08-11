@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -19,18 +20,23 @@ public class Instruction {
 	@Column(name="i_id")
 	private int i_id;
 	
+	@NotNull
 	@Column(name = "stepOrder")
 	private int stepOrder;
 	
+	@NotNull
 	@Column(name = "isSub")
 	private boolean isSub;
 	
+	@NotNull
 	@Column(name = "prior")
 	private int prior;
 	
+	@NotNull
 	@Column(name="description")
 	private String description;
 	
+	@NotNull
 	@Column(name="duration")
 	private Long duration;
 
