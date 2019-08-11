@@ -45,7 +45,7 @@ public class Recipe {
 	@JoinTable(
 			name="recipe_ingredient",
 			joinColumns = {@JoinColumn(name = "recipe", referencedColumnName="r_id")},
-			inverseJoinColumns = {@JoinColumn(name = "ingredient", referencedColumnName="name")}
+			inverseJoinColumns = {@JoinColumn(name = "ingredient", referencedColumnName="title")}
 			)
 	private Set<Ingredient> ingredients;
 	
@@ -55,10 +55,10 @@ public class Recipe {
 		instructions = new HashSet<Instruction>();
 	}
 	
-	public Recipe(int id, String name, Set<Instruction> steps, Set<Ingredient> ingredients) {
+	public Recipe(int id, String title, Set<Instruction> steps, Set<Ingredient> ingredients) {
 		super();
 		this.id = id;
-		this.title = name;
+		this.title = title;
 		this.instructions = steps;
 		this.ingredients = ingredients;
 	}
@@ -69,10 +69,10 @@ public class Recipe {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
+	public String getTitle() {
 		return title;
 	}
-	public void setName(String name) {
+	public void setTitle(String name) {
 		this.title = name;
 	}
 	public Set<Instruction> getInstructions() {
