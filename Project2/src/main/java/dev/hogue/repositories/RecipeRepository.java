@@ -11,4 +11,5 @@ import dev.hogue.entities.Recipe;
 public interface RecipeRepository extends CrudRepository<Recipe,Integer>{
 	Recipe findByName(String name);
 	Recipe findById(int id);
+	//Set<Recipe> findByNameInIngredients
 }

@@ -1,11 +1,14 @@
 package dev.hogue.entities;
 
+import java.sql.Time;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -15,43 +18,57 @@ public class Instruction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="i_id")
-	private int id;
+	private int i_id;
 	
+	@NotNull
 	@Column(name = "stepOrder")
 	private int stepOrder;
 	
-	@Column(name = "prior")
-	private int priorStepId;
+	@NotNull
+	@Column(name = "isSub")
+	private boolean isSub;
 	
+	@NotNull
+	@Column(name = "prior")
+	private int prior;
+	
+	@NotNull
 	@Column(name="description")
 	private String description;
 	
+	@NotNull
 	@Column(name="duration")
-	private long duration;
+	private Long duration;
 
 	
 	
 	
+	public boolean isSub() {
+		return isSub;
+	}
+	public void setSub(boolean isSub) {
+		this.isSub = isSub;
+	}
 	public int getPriorStepId() {
-		return priorStepId;
+		return prior;
 	}
 	public void setPriorStepId(int priorStepId) {
-		this.priorStepId = priorStepId;
+		this.prior = priorStepId;
 	}
 	public Instruction() {
 		super();
 	}
 	public void setStepId(int priorStepId) {
-		this.priorStepId = priorStepId;
+		this.prior = priorStepId;
 	}
 	public long getDuration() {
 		return duration;
 	}
-	public void setDuration(long duration) {
+	public void setDuration(Long duration) {
 		this.duration = duration;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.i_id = id;
 	}
 	public String getDescription() {
 		return description;
@@ -67,7 +84,7 @@ public class Instruction {
 		this.stepOrder = stepOrder;
 	}
 	public int getId() {
-		return id;
+		return i_id;
 	}
 
 	

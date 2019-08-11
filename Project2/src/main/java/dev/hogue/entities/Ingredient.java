@@ -3,13 +3,16 @@ package dev.hogue.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ingredients")
@@ -19,12 +22,10 @@ public class Ingredient {
 	@Column(name="name")
 	private String name;
 	
-	@JsonBackReference
-	@ManyToMany(mappedBy ="ingredients")
+	@JsonIgnore
+	@ManyToMany(mappedBy ="ingredients",fetch = FetchType.LAZY)
 	@Column(name="recipes")
 	private Set<Recipe> usedIn;
-	
-	
 
 	public Ingredient() {
 		super();
@@ -58,7 +59,6 @@ public class Ingredient {
 
 	@Override
 	public String toString() {
-		return "Ingredient [name=" + name + "]";
+		return "Ingredient [name=" + name + ", usedIn=" + usedIn + "]";
 	}
-
 }

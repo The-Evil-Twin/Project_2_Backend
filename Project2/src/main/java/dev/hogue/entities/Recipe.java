@@ -3,7 +3,6 @@ package dev.hogue.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +14,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table; // Ask if we needed to import the Hibernate version of table
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "recipes")
@@ -25,14 +30,18 @@ public class Recipe {
 	@Column(name="r_id")
 	private int id;
 	
+	@NotNull
 	@Column(name="title")
 	private String title;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@NotNull
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+	@Cascade({CascadeType.PERSIST})
 	private Set<Instruction> instructions;
 	
-	//@JsonManagedReference
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	//@JsonIgnore
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Cascade({CascadeType.ALL})
 	@JoinTable(
 			name="recipe_ingredient",
 			joinColumns = {@JoinColumn(name = "recipe", referencedColumnName="r_id")},

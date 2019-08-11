@@ -23,10 +23,7 @@ public class RecipeServiceSpring implements RecipeService{
 	RecipeRepository repoRecipe;
 
 	@Override
-	public Recipe createRecipe(Recipe recipe) {
-//		if(recipeExists(recipe)) {
-//			return null;
-//		}
+	public Recipe saveRecipe(Recipe recipe) {
 		return repoRecipe.save(recipe);
 	}
 
@@ -42,13 +39,10 @@ public class RecipeServiceSpring implements RecipeService{
 		return recipe;
 	}
 
-
-
-	@Override
-	public Recipe updateRecipe(Recipe recipe) {
-		repoRecipe.save(recipe);
-		return null;
-	}
+//	@Override
+//	public Recipe updateRecipe(Recipe recipe) {
+//		return repoRecipe.save(recipe);
+//	}
 
 	@Override
 	public Set<Recipe> getAllRecipes() {

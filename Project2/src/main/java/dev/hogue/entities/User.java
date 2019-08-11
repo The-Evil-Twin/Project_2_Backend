@@ -23,7 +23,7 @@ public class User {
 	@NotBlank
 	private String password;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	private Set<Recipe> recipes;
 
 	public User() {

@@ -4,11 +4,13 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -69,14 +71,19 @@ public class DatabaseController {
 //		return false;
 //	}
 
+	@CrossOrigin
 	@RequestMapping(value="/createRecipe", method = RequestMethod.POST, consumes={"application/json"})
 	public boolean addRecipe(@RequestBody Recipe recipe) {
-		rs.createRecipe(recipe);
+		System.out.println("GOOOOOOOOOOOOOOOOOOOOOOOTTT AAAAAAAAAAAA RESPPPPPPPPPPPPPPPONNNNNNNNNNSEEEEEEEE");
+		Gson gson = new Gson();
+		System.out.println(recipe);
+		System.out.println(gson.toJson(recipe));
+		rs.saveRecipe(recipe);
 		return true;
 	}
 	@RequestMapping(value="/updateRecipe", method = RequestMethod.PUT)
 	public Recipe updateRecipe(@RequestBody Recipe recipe) {
-		return rs.updateRecipe(recipe);
+		return rs.saveRecipe(recipe);
 	}
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public User userLogin(@RequestBody User user) {
@@ -88,12 +95,20 @@ public class DatabaseController {
 	}
 	@RequestMapping(value="/ingredients", method = RequestMethod.GET)
 	public Set<Ingredient> getIngredients(){
+		for(Ingredient ingredient : ingred.getAllIngredient()) {
+			System.out.println(ingredient.getName());
+			for(Recipe recipe : ingredient.getUsedIn()) {
+				System.out.println(recipe.getName());
+			}
+		}
 		return ingred.getAllIngredient();
 	}
+	@CrossOrigin
 	@RequestMapping(value="/recipes", method = RequestMethod.GET)
 	public Set<Recipe> getRecipes(){
 		return rs.getAllRecipes();
 	}
+	
 	@RequestMapping(value="/createUser", method = RequestMethod.POST, consumes={"application/json"})
 	public User createUser(@RequestBody User user) {
 		return us.createUser(user);
