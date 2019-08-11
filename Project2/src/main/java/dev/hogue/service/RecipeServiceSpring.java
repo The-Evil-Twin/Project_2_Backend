@@ -34,8 +34,8 @@ public class RecipeServiceSpring implements RecipeService{
 	}
 
 	@Override
-	public Recipe getRecipeByName(String name) {
-		Recipe recipe = repoRecipe.findByName(name);
+	public Recipe getRecipeByTitle(String title) {
+		Recipe recipe = repoRecipe.findByTitle(title);
 		return recipe;
 	}
 

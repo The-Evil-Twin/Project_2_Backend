@@ -14,7 +14,7 @@ public interface RecipeService {
 	 */
 	Recipe saveRecipe(Recipe recipe);
 	Recipe getRecipeById(int id);
-	Recipe getRecipeByName(String name);
+	Recipe getRecipeByTitle(String name);
 	//Recipe updateRecipe(Recipe recipe);
 	Recipe addIngredient(Recipe recipe, Ingredient ingredient);
 	Recipe addInstruction(Recipe recipe, Instruction instruction);

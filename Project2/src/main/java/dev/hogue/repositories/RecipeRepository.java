@@ -9,7 +9,7 @@ import dev.hogue.entities.Recipe;
 
 @Repository
 public interface RecipeRepository extends CrudRepository<Recipe,Integer>{
-	Recipe findByName(String name);
+	Recipe findByTitle(String title);
 	Recipe findById(int id);
 	//Set<Recipe> findByNameInIngredients
 }
