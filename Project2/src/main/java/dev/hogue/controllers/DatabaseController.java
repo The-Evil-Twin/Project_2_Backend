@@ -1,5 +1,6 @@
 package dev.hogue.controllers;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public class DatabaseController {
 	}
 	@CrossOrigin
 	@RequestMapping(value="/recipes", method = RequestMethod.GET)
-	public Set<Recipe> getRecipes(){
+	public List<Recipe> getRecipes(){
 		return rs.getAllRecipes();
 	}
 	

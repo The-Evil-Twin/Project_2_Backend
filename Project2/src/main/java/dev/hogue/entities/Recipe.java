@@ -1,6 +1,8 @@
 package dev.hogue.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -37,7 +39,7 @@ public class Recipe {
 	@NotNull
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
 	@Cascade({CascadeType.PERSIST})
-	private Set<Instruction> instructions;
+	private List<Instruction> instructions;
 	
 	//@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -52,10 +54,10 @@ public class Recipe {
 	public Recipe() {
 		super();
 		ingredients = new HashSet<Ingredient>();
-		instructions = new HashSet<Instruction>();
+		instructions = new ArrayList<Instruction>();
 	}
 	
-	public Recipe(int id, String title, Set<Instruction> steps, Set<Ingredient> ingredients) {
+	public Recipe(int id, String title, List<Instruction> steps, Set<Ingredient> ingredients) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -75,10 +77,10 @@ public class Recipe {
 	public void setTitle(String name) {
 		this.title = name;
 	}
-	public Set<Instruction> getInstructions() {
+	public List<Instruction> getInstructions() {
 		return instructions;
 	}
-	public void setInstructions(Set<Instruction> steps) {
+	public void setInstructions(List<Instruction> steps) {
 		this.instructions = steps;
 	}
 	public void addStep(Instruction step) {
